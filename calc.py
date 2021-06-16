@@ -44,7 +44,7 @@ def mathShit(tallies, people, payments):
     for person in tallies:
         if tallies[person] < even:
             owes = even - tallies[person]
-            print(person + " owes " + (str)(owes))
+            print(person + " owes €" + (str)(owes))
             returnDict[person] = owes
         else:
             returnDict[person] = even - tallies[person]
@@ -66,13 +66,16 @@ def balanceItOut(owings):
     while (q):
         payer = findPayer(owings)
         payee = findPayee(owings)
+        if ((owings[payee] > -0.01) or (owings[payer] < 0.01)):
+            break
+        
         if (owings[payee] * (-1)) >= owings[payer]:
-            print(payer + " pays " + (str)(owings[payer]) + " to " + payee)
+            print(payer + " pays €" + (str)(owings[payer]) + " to " + payee)
             temp = owings[payer]
             owings[payer] -= owings[payer]
             owings[payee] += temp
         else:
-            print(payer + " pays " + (str)(owings[payee]* (-1)) + " to " + payee)
+            print(payer + " pays €" + (str)(owings[payee]* (-1)) + " to " + payee)
             temp = owings[payee]
             owings[payee] -= owings[payee]
             owings[payer] += temp
@@ -98,6 +101,7 @@ def main():
     #print(tallies)
     owings = mathShit(tallies, people, payments)
     #print(owings)
+    print("")
     balanceItOut(owings)
     #print(owings)
 
