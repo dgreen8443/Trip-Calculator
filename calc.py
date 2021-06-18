@@ -70,12 +70,12 @@ def balanceItOut(owings):
             break
         
         if (owings[payee] * (-1)) >= owings[payer]:
-            print(payer + " pays €" + (str)(owings[payer]) + " to " + payee)
+            print(payer + " pays €" + "{:.2f}".format((owings[payer])) + " to " + payee)
             temp = owings[payer]
             owings[payer] -= owings[payer]
             owings[payee] += temp
         else:
-            print(payer + " pays €" + (str)(owings[payee]* (-1)) + " to " + payee)
+            print(payer + " pays €" + "{:.2f}".format((owings[payee] * (-1))) + " to " + payee)
             temp = owings[payee]
             owings[payee] -= owings[payee]
             owings[payer] += temp
