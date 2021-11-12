@@ -5,8 +5,6 @@ import json
 payments_Text = "./payments.JSON"
 people_Text = "./people.txt"
 
-
-
 def readPeopleIn():
     with open(people_Text) as f:
         content = f.readlines()
@@ -31,11 +29,10 @@ def addShitUp(people, payments):
     for pay in payments:
         extract = payments[pay]
         tallies[extract[0]] += extract[1]
-    
     return tallies
 
 
-def mathShit(tallies, people, payments):
+def mathShit(tallies, people):
     totalCost = 0
     returnDict = {}
     for ele in tallies:
@@ -87,23 +84,15 @@ def balanceItOut(owings):
                 bal += 1
         if (bal == len(owings)):
             q = False
-        
-
-        
 
 
 def main():
     people = readPeopleIn()
     payments = readPaymentsIn()
-    #print(people)
-    #print(payments)
     tallies = addShitUp(people, payments)
-    #print(tallies)
-    owings = mathShit(tallies, people, payments)
-    #print(owings)
+    owings = mathShit(tallies, people)
     print("")
     balanceItOut(owings)
-    #print(owings)
 
 if __name__ == "__main__":
     main()
